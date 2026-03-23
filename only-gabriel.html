@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Only Gabriel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rose: #f4a6c0;
+      --deep-rose: #c0456b;
+      --gold: #e8c97a;
+      --dark: #12050e;
+      --mid-dark: #1e0a18;
+      --purple: #6b2d5e;
+      --light-pink: #fce8f0;
+      --cream: #fdf6ec;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--dark);
+      color: var(--light-pink);
+      font-family: 'Crimson Pro', serif;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* STARS BG */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, rgba(244,166,192,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 80%, rgba(232,201,122,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 60% 10%, rgba(244,166,192,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 80% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 45% 45%, rgba(232,201,122,0.4) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 90% 30%, rgba(244,166,192,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 15% 70%, rgba(255,255,255,0.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 70% 90%, rgba(232,201,122,0.3) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      text-align: center;
+      padding: 60px 20px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(192,69,107,0.3) 0%, transparent 60%);
+    }
+
+    .crown {
+      font-size: 4rem;
+      animation: float 3s ease-in-out infinite;
+      margin-bottom: 10px;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .site-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5rem, 18vw, 14rem);
+      letter-spacing: 0.05em;
+      line-height: 0.85;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--rose) 40%, var(--deep-rose) 70%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 30px rgba(192,69,107,0.5));
+      animation: shimmer 4s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { filter: drop-shadow(0 0 20px rgba(192,69,107,0.4)); }
+      50% { filter: drop-shadow(0 0 50px rgba(232,201,122,0.6)); }
+    }
+
+    .subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 3vw, 1.6rem);
+      color: var(--gold);
+      letter-spacing: 0.3em;
+      margin-top: 16px;
+      opacity: 0.85;
+    }
+
+    .divider {
+      width: 200px;
+      height: 2px;
+      margin: 30px auto;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+
+    /* MAIN PHOTO */
+    .main-photo-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 20px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .main-photo-frame {
+      position: relative;
+      display: inline-block;
+    }
+
+    .main-photo-frame::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border: 2px solid var(--gold);
+      z-index: -1;
+      animation: borderPulse 3s ease-in-out infinite;
+    }
+
+    .main-photo-frame::after {
+      content: '';
+      position: absolute;
+      inset: -16px;
+      border: 1px solid rgba(244,166,192,0.3);
+      z-index: -1;
+    }
+
+    @keyframes borderPulse {
+      0%, 100% { border-color: var(--gold); box-shadow: 0 0 20px rgba(232,201,122,0.2); }
+      50% { border-color: var(--rose); box-shadow: 0 0 40px rgba(244,166,192,0.4); }
+    }
+
+    .main-photo {
+      width: min(380px, 85vw);
+      display: block;
+      filter: sepia(10%) saturate(1.2);
+      transition: filter 0.4s;
+    }
+
+    .main-photo:hover { filter: sepia(0%) saturate(1.4) brightness(1.05); }
+
+    .photo-caption-main {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin-top: 20px;
+      letter-spacing: 0.1em;
+    }
+
+    /* BIOGRAPHY */
+    .bio-section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 80px 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      letter-spacing: 0.08em;
+      color: var(--rose);
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .bio-content {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(244,166,192,0.15);
+      border-left: 3px solid var(--deep-rose);
+      padding: 40px;
+      font-size: 1.25rem;
+      line-height: 1.9;
+      color: var(--light-pink);
+    }
+
+    .bio-content p { margin-bottom: 20px; }
+    .bio-content p:last-child { margin-bottom: 0; }
+
+    .highlight {
+      color: var(--gold);
+      font-weight: 600;
+      font-style: italic;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(192,69,107,0.2);
+      border: 1px solid rgba(192,69,107,0.4);
+      color: var(--rose);
+      padding: 3px 12px;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      font-family: 'Bebas Neue', sans-serif;
+      margin: 2px;
+    }
+
+    .tags-row {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    /* GALLERY */
+    .gallery-section {
+      padding: 80px 20px;
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(to bottom, transparent, rgba(107,45,94,0.1), transparent);
+    }
+
+    .gallery-grid {
+      max-width: 1200px;
+      margin: 40px auto 0;
+      columns: 3 280px;
+      column-gap: 16px;
+    }
+
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      group: gallery-item;
+    }
+
+    .gallery-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(12,5,14,0.85) 0%, transparent 50%);
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .gallery-item:hover::before { opacity: 1; }
+
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      transition: transform 0.5s ease;
+      filter: saturate(0.9);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.04);
+      filter: saturate(1.2);
+    }
+
+    .gallery-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px;
+      z-index: 2;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--gold);
+      transform: translateY(10px);
+      opacity: 0;
+      transition: all 0.3s;
+    }
+
+    .gallery-item:hover .gallery-label {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* STATS */
+    .stats-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px 20px;
+      z-index: 1;
+      position: relative;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .stat-card {
+      border: 1px solid rgba(244,166,192,0.2);
+      background: rgba(255,255,255,0.02);
+      padding: 30px 20px;
+      text-align: center;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .stat-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+
+    .stat-emoji { font-size: 2.5rem; margin-bottom: 12px; display: block; }
+
+    .stat-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.2em;
+      color: var(--rose);
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--cream);
+      line-height: 1.5;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 60px 20px;
+      border-top: 1px solid rgba(244,166,192,0.1);
+      position: relative;
+      z-index: 1;
+    }
+
+    footer p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: rgba(244,166,192,0.5);
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(12,5,14,0.95);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .lightbox.active { display: flex; }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 80vh;
+      object-fit: contain;
+      border: 1px solid rgba(244,166,192,0.2);
+    }
+
+    .lightbox-caption {
+      margin-top: 20px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--gold);
+      font-size: 1.2rem;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2rem;
+      color: var(--rose);
+      cursor: pointer;
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 0.1em;
+    }
+
+    .lightbox-close:hover { color: var(--gold); }
+
+    /* SCROLL ANIMATION */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 600px) {
+      .gallery-grid { columns: 2 140px; }
+      .bio-content { padding: 24px; font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="crown">👑</div>
+    <h1 class="site-title">Only<br>Gabriel</h1>
+    <p class="subtitle">∗ Gabriel Menegassi de Jesus ∗</p>
+    <div class="divider"></div>
+    <p style="font-family:'Crimson Pro',serif; font-style:italic; font-size:1.1rem; color:rgba(244,166,192,0.7); letter-spacing:0.15em;">O único. O gay. O afeminado.</p>
+  </section>
+
+  <!-- MAIN PHOTO -->
+  <section class="main-photo-section fade-in">
+    <div class="main-photo-frame">
+      <img class="main-photo"
+           src="https://media.discordapp.net/attachments/1372706993235820544/1485781678269009960/0795c9f5-cd3a-4810-bccb-a76eab35206d.png?ex=69c31d84&is=69c1cc04&hm=2ed25ec6851a9d1c0c51857a1a1d78c180bab31a81d1b1707e691f1f75f81206&=&format=webp&quality=lossless&width=237&height=315"
+           alt="Foto original do Gabriel Menegassi de Jesus">
+    </div>
+    <p class="photo-caption-main">✦ Foto oficial ✦</p>
+  </section>
+
+  <!-- BIOGRAPHY -->
+  <section class="bio-section fade-in">
+    <h2 class="section-title">Biografia</h2>
+    <div class="divider"></div>
+    <div class="bio-content">
+      <p>
+        <span class="highlight">Gabriel Menegassi de Jesus</span> é uma figura singular e inconfundível, um femboy que carrega consigo a graça dos escolhidos. Sua trajetória acadêmica é prova de seu brilhantismo: Gabriel passou no processo seletivo da <span class="highlight">Escola Técnica Estadual de São Paulo</span> em <span class="highlight">8º lugar</span> — e, quando consideramos apenas os candidatos que realmente escolheram ingressar na instituição, sua posição sobe para um glorioso <span class="highlight">6º lugar</span>.
+      </p>
+      <p>
+        Homem de gosto refinado, Gabriel dedica seu tempo livre ao universo dos games. Seus títulos favoritos revelam uma personalidade multifacetada: o sensível e introspectivo <span class="highlight">My Femboy Roommate</span>, o perturbador e envolvente <span class="highlight">The Coffin of Andy and Leyley</span>, e o grandioso e colorido <span class="highlight">Genshin Impact</span>.
+      </p>
+      <p>
+        Gabriel se declara <span class="highlight">gay</span> com a naturalidade e a confiança de quem sabe exatamente quem é. Um ser autêntico em todos os sentidos.
+      </p>
+      <div class="tags-row">
+        <span class="tag">Femboy</span>
+        <span class="tag">Gamer</span>
+        <span class="tag">Gay</span>
+        <span class="tag">ETEC SP</span>
+        <span class="tag">6º Lugar</span>
+        <span class="tag">Lendário</span>
+        <span class="tag">Insubstituível</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-section fade-in">
+    <h2 class="section-title">Ficha Técnica</h2>
+    <div class="divider"></div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-emoji">🎮</span>
+        <div class="stat-label">Jogo favorito #1</div>
+        <div class="stat-value">My Femboy Roommate</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-emoji">⚰️</span>
+        <div class="stat-label">Jogo favorito #2</div>
+        <div class="stat-value">The Coffin of Andy and Leyley</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-emoji">⚔️</span>
+        <div class="stat-label">Jogo favorito #3</div>
+        <div class="stat-value">Genshin Impact</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-emoji">🏫</span>
+        <div class="stat-label">Escola</div>
+        <div class="stat-value">ETEC — Escola Técnica Estadual de São Paulo</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-emoji">🥇</span>
+        <div class="stat-label">Classificação real</div>
+        <div class="stat-value">6º lugar (com os que desistiram, 8º)</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-emoji">🌈</span>
+        <div class="stat-label">Identidade</div>
+        <div class="stat-value">Gay & Orgulhoso</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery-section fade-in">
+    <h2 class="section-title" style="text-align:center;">Galeria Sagrada</h2>
+    <div class="divider"></div>
+
+    <div class="gallery-grid" id="gallery">
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781343936970812/34de0281-8efa-45ef-b032-f6d3ee562754.png?ex=69c31d34&is=69c1cbb4&hm=c150e2e3f2958dd2e828b5ee837862352136ba18059c2d68725e56687b71cf8c&=&format=webp&quality=lossless&width=664&height=373" alt="Gabriel Terror">
+        <div class="gallery-label">Gabriel Terror</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781344335302827/c1d02399-8a16-4139-b51d-6378937ca648.png?ex=69c31d34&is=69c1cbb4&hm=b61cd0c38c909dd634017fc8f0842a49c0399fe99d57586fb1c299ebdf6e32a1&=&format=webp&quality=lossless&width=353&height=568" alt="Gabriel Grávido">
+        <div class="gallery-label">Gabriel Grávido</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781344712654888/5d6c162f-8791-480b-84cb-c8d665d14bf8.png?ex=69c31d35&is=69c1cbb5&hm=4103f2dce5e2eff2a3db65b13c144887aed0525610f4cd5075c311dec7ef75be&=&format=webp&quality=lossless&width=796&height=568" alt="Gabriel e seu ídolo Raul">
+        <div class="gallery-label">Gabriel e seu ídolo Raul</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781345031426048/23408248-4e2f-450f-a231-45ef26461e41.png?ex=69c31d35&is=69c1cbb5&hm=ebedbdc6a6062e54d2df5b4b3c1ccfe18118b7da2855ef49a56ffb19a48b62cc&=&format=webp&quality=lossless&width=463&height=568" alt="Gabriel Grande">
+        <div class="gallery-label">Gabriel Grande</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781345325158462/21c13eb6-c318-4bba-906a-60e22b85789e.png?ex=69c31d35&is=69c1cbb5&hm=439ad357af324a0f14147774f3043a39f0df2d3bfb66b46e3b25c750b060a037&=&format=webp&quality=lossless&width=461&height=461" alt="Gabriel Grande 2">
+        <div class="gallery-label">Gabriel Grande 2</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781345715093687/470589a7-9015-4d5e-8003-03373d2f8e52.png?ex=69c31d35&is=69c1cbb5&hm=3c95509a4ed320257b7458a85f6d5154b4047377b290895f0e7b61cbe625faea&=&format=webp&quality=lossless&width=648&height=463" alt="Gabriel Jojo">
+        <div class="gallery-label">Gabriel Jojo</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781346012893224/a4e611e9-a60f-490d-99da-a3ef64521d9a.png?ex=69c31d35&is=69c1cbb5&hm=1833ace436ea7f0d773aae5deb8a408742636cb5f5d712ef7a87af985ff610b4&=&format=webp&quality=lossless&width=390&height=519" alt="Gabriel Morreu">
+        <div class="gallery-label">Gabriel Morreu</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781346335985835/897b737e-b833-4373-8e78-88264f38740f.png?ex=69c31d35&is=69c1cbb5&hm=455056c4856030b41ee99492dccce15e91f795bbdcef965144b10cb7cd796a53&=&format=webp&quality=lossless&width=648&height=468" alt="Gabriel GTA">
+        <div class="gallery-label">Gabriel GTA</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781346646229032/32fd2a1a-3d8c-498d-8b3a-fa2f82f66249.png?ex=69c31d35&is=69c1cbb5&hm=ff1224cf1377308a5729770cfa8d9666d185b2100edfaacad9e5aa661d82bee1&=&format=webp&quality=lossless&width=648&height=542" alt="Gabriel Cachorro">
+        <div class="gallery-label">Gabriel Cachorro</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781346990166137/4b1c04d4-9a3a-4910-83d0-b9c1c8af9aec.png?ex=69c31d35&is=69c1cbb5&hm=ab1895674c8f41917479f73ff8828d5dd368786ec1945ad71dcede8efdf40d8b&=&format=webp&quality=lossless&width=378&height=568" alt="Gabriel Bebê">
+        <div class="gallery-label">Gabriel Bebê</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781380289007707/9b8d2551-61f1-40f2-9f2b-0bb09632487c.png?ex=69c31d3d&is=69c1cbbd&hm=1a43dbc9ef371c681d9825ac3696ccd7f1328222f8d475677e36b55b6f14a223&=&format=webp&quality=lossless&width=648&height=596" alt="Gabriel Obstáculo">
+        <div class="gallery-label">Gabriel Obstáculo</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781440493916403/db102dfc-0dd6-4b42-973c-0d8547bf5291.png?ex=69c31d4b&is=69c1cbcb&hm=156e9ff21110d8d5a4a56e44cb18d5c477f745d9736ebd73f95cd7d1109ad31b&=&format=webp&quality=lossless&width=1011&height=568" alt="Gabriel Lindo Zoom">
+        <div class="gallery-label">Gabriel Lindo Zoom</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781505979584632/2f75e340-8fdb-4242-a4d5-d82947d4152a.png?ex=69c31d5b&is=69c1cbdb&hm=6b2f2b2cd25c2e7f0b0bdd138c2efa6254be143da280a10e8d8422e3bc512e54&=&format=webp&quality=lossless&width=496&height=661" alt="Gabriel com Flor">
+        <div class="gallery-label">Gabriel com Flor</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781521640984668/2f380202-b463-4cdf-b831-bbba46a67604.png?ex=69c31d5f&is=69c1cbdf&hm=4b150002aa914b06a0d61122f1963aaf5208b0a5923f020551ef8bba9e53bed2&=&format=webp&quality=lossless&width=617&height=661" alt="Homem Admirando Gabriel">
+        <div class="gallery-label">Homem Admirando Gabriel</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781537160040569/db9932cb-57fa-4427-8232-715dc0d1f6de.png?ex=69c31d62&is=69c1cbe2&hm=1c0ca9543707f11c7d4a398cb4ef456009bafb7fd088621b7089a7d3eefc27db&=&format=webp&quality=lossless&width=496&height=661" alt="Outro Ângulo do Gabriel com Flor">
+        <div class="gallery-label">Outro Ângulo com Flor</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781610698768515/f3f86946-22e3-4093-a8c1-b47352aed503.png?ex=69c31d74&is=69c1cbf4&hm=a042efcddc4290ac917ba8160341cd2e4f525f8a6b33f796baa0064b0b06a10e&=&format=webp&quality=lossless&width=261&height=315" alt="Gabriel Resenha">
+        <div class="gallery-label">Gabriel Resenha</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781699110502491/0d04db8a-0986-4c13-9791-74131d016186.png?ex=69c31d89&is=69c1cc09&hm=95a1e72100d5ee91d2b928a815947185e896939c3b89a797586bb40097643ed3&=&format=webp&quality=lossless&width=379&height=661" alt="Irmão Gêmeo Luiz">
+        <div class="gallery-label">Irmão Gêmeo Luiz (morador de SP Capital)</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781979608780951/images.png?ex=69c31dcc&is=69c1cc4c&hm=f8dfe9c8fc70ca149fc00f7763e928ba5efdfa6684fbb91e2b40d1b5a056d276&=&format=webp&quality=lossless&width=202&height=202" alt="Cutia do Gabriel">
+        <div class="gallery-label">Cutia do Gabriel</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781980091256872/ff06c1ce28d16a8a003cfadf445321e3.png?ex=69c31dcc&is=69c1cc4c&hm=d1564aef9a219b2aed5846accb6fd73b2caa4e7cbb1f3edcddb52133714a3b0a&=&format=webp&quality=lossless&width=754&height=568" alt="Hotel">
+        <div class="gallery-label">Hotel</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781980443312260/images.png?ex=69c31dcc&is=69c1cc4c&hm=136e0d85176e9b3da83f6904d3cdc96e04f2ec055edc1d9aea2b199768ba16ea&=&format=webp&quality=lossless&width=181&height=226" alt="Gabriel nos Computer">
+        <div class="gallery-label">Gabriel nos Computer</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781981030649967/626c8003bab0b.png?ex=69c31dcc&is=69c1cc4c&hm=d55920df14610fac73575f469017a01d3ee7ec17f4a4ec59b7fea17de6823fce&=&format=webp&quality=lossless&width=383&height=568" alt="Carnaval">
+        <div class="gallery-label">Carnaval</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781981449945179/images.png?ex=69c31dcc&is=69c1cc4c&hm=70a94edbe9acbec4280a8629198afba4d09e7c7c7fe886268f93f6d6a4b5e024&=&format=webp&quality=lossless&width=230&height=177" alt="Mais Tarde Tem">
+        <div class="gallery-label">Mais Tarde Tem</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781982385410058/6252d60418578.png?ex=69c31dcd&is=69c1cc4d&hm=65b58b349b33eeadacd89b3c80040a6ff9641e9f5d00fce72f0fb7e070f2d6c2&=&format=webp&quality=lossless&width=454&height=568" alt="Quica">
+        <div class="gallery-label">Quica</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781983245107290/225675e61fb082feb68ac210e8b7dc61.png?ex=69c31dcd&is=69c1cc4d&hm=68a832213d7575186f0773cf790bb6c99c2c7cea73af4d69a9d8e53dfcf25b3e&=&format=webp&quality=lossless&width=568&height=568" alt="Nunca Mande">
+        <div class="gallery-label">Nunca Mande</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781983849222244/F0a_IZqWYAAm3BY.png?ex=69c31dcd&is=69c1cc4d&hm=5493445a72a3bfa3057433b206c432f1bbda9a0936ccae2d127411e5ac688bd6&=&format=webp&quality=lossless&width=461&height=354" alt="Chove">
+        <div class="gallery-label">Chove</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781984604065883/F0qxka1XoAEoqWu.png?ex=69c31dcd&is=69c1cc4d&hm=897dc676ed0a58ff2fa9ed1e0b3d452d21bcac1128145c588b6a698114f2516f&=&format=webp&quality=lossless&width=391&height=420" alt="Ataque Aéreo">
+        <div class="gallery-label">Ataque Aéreo</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485781985040404620/724756215965ccf46a441dc1589da68a.png?ex=69c31dcd&is=69c1cc4d&hm=7a58323176b1dcb4b33bae9db0920d92311988d7665ba9b36e609118c3ec961f&=&format=webp&quality=lossless&width=212&height=156" alt="Gabriel Merenda">
+        <div class="gallery-label">Gabriel Merenda</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://media.discordapp.net/attachments/1372706993235820544/1485783599276888176/848d2164-0e98-4a1d-9467-d8b24f024305.png?ex=69c31f4e&is=69c1cdce&hm=30a6331b82f90149886de77956c81251eb32e3253736a627224cc2d195abc1d1&=&format=webp&quality=lossless&width=584&height=661" alt="Gabriel e seu amigo Jeff">
+        <div class="gallery-label">Gabriel e seu amigo Jeff</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="divider"></div>
+    <p style="margin-bottom:8px;">✦ Only Gabriel — Um culto à imagem do lendário Gabriel Menegassi de Jesus ✦</p>
+    <p>Feito com devoção absoluta.</p>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <div class="lightbox-close" onclick="closeLightbox()">✕ FECHAR</div>
+    <img id="lightbox-img" src="" alt="">
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+  </div>
+
+  <script>
+    // Lightbox
+    function openLightbox(el) {
+      const img = el.querySelector('img');
+      const label = el.querySelector('.gallery-label').textContent;
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox-img').alt = img.alt;
+      document.getElementById('lightbox-caption').textContent = label;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(e) {
+      if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lightbox-close')) {
+        document.getElementById('lightbox').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox({ target: document.getElementById('lightbox') });
+    });
+
+    // Scroll fade-in
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
